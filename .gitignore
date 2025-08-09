@@ -1,0 +1,51 @@
+# Ignore all files in the eric-demo-reference directory
+eric-demo-reference/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env (keep example files)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Build output
+build/
+dist/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Caches
+.cache/
+.vite/
+.parcel-cache/
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# Runtime data
+pids/
+*.pid
+*.pid.lock
+
+# Editors/IDE
+.vscode/
+.idea/
+*.iml
+
+# Misc
+node_repl_history
