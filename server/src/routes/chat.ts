@@ -10,11 +10,9 @@ chatRouter.post('/init', async (_req: Request, res: Response) => {
 
 chatRouter.post('/chat', async (req: Request, res: Response) => {
   try {
-    const { message, threadId, model, temperature } = req.body as {
+    const { message, threadId } = req.body as {
       message?: string;
       threadId?: string;
-      model?: string;
-      temperature?: number;
     };
     if (!message) {
       res.status(400).json({ error: 'message_required' });
@@ -24,14 +22,7 @@ chatRouter.post('/chat', async (req: Request, res: Response) => {
     if (!id) {
       id = await createAssistantThread();
     }
-    const opts: { model?: string; temperature?: number } = {};
-    if (typeof model === 'string' && model.length > 0) {
-      opts.model = model;
-    }
-    if (typeof temperature === 'number') {
-      opts.temperature = temperature;
-    }
-    const result = await sendAssistantMessage(id, message, opts);
+    const result = await sendAssistantMessage(id, message);
     res.json(result);
   } catch (err) {
     // eslint-disable-next-line no-console

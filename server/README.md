@@ -11,6 +11,6 @@ Use Basic Auth header with username 'demo' and password 'demo123'.
 Endpoints
 
 - POST /api/init -> { threadId }
-- POST /api/chat { message, threadId?, model?, temperature? } -> { reply, threadId }
+- POST /api/chat { message, threadId? } -> { reply, threadId }
 
 

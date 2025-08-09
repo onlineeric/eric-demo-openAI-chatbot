@@ -5,10 +5,7 @@ import type { BaseMessage } from '@langchain/core/messages';
 
 type ThreadId = string;
 
-interface ModelConfig {
-  model?: string | undefined;
-  temperature?: number | undefined;
-}
+interface ModelConfig {}
 
 const threadIdToHistory: Map<ThreadId, BaseMessage[]> = new Map();
 
@@ -20,18 +17,14 @@ export function createThread(): ThreadId {
 
 export async function sendMessage(
   threadId: ThreadId,
-  userText: string,
-  config: ModelConfig = {}
+  userText: string
 ): Promise<{ reply: string; threadId: ThreadId }> {
-  const { model = 'gpt-4o-mini', temperature = 0.6 } = config;
   const history = threadIdToHistory.get(threadId);
   if (!history) {
     throw new Error('invalid_thread');
   }
 
   const llm = new ChatOpenAI({
-    model,
-    temperature,
     apiKey: process.env.OPENAI_API_KEY ?? '',
   });
 

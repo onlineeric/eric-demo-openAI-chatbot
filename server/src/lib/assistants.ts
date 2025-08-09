@@ -14,16 +14,14 @@ export async function createAssistantThread(): Promise<string> {
 
 export async function sendAssistantMessage(
   threadId: string,
-  userText: string,
-  options?: { model?: string; temperature?: number }
+  userText: string
 ): Promise<{ reply: string; threadId: string }> {
   const assistantId = process.env.OPENAI_ASSISTANT_ID;
   if (!assistantId) {
     throw new Error('missing_assistant_id');
   }
 
-  // Do not mutate assistant configuration here to avoid incompatibilities across models
-  const requestedModel = options?.model;
+  // Model and temperature are driven by the assistant configuration; do not override here
 
   await openai.beta.threads.messages.create(threadId, {
     role: 'user',
