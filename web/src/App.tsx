@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Container, Paper, Box, Typography, TextField, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { chat, initThread, makeAuthHeader } from './api/client';
@@ -19,6 +19,7 @@ function App() {
 
   const baseUrl = useMemo(() => 'http://localhost:3001', []);
   const authHeader = useMemo(() => makeAuthHeader(username, password), [username, password]);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (authed && !threadId) {
@@ -55,6 +56,12 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    el.scrollTop = el.scrollHeight;
+  }, [messages, loading]);
+
   if (!authed) {
     return (
       <Container maxWidth="sm" sx={{ mt: 6 }}>
@@ -79,7 +86,7 @@ function App() {
       <Paper sx={{ p: 2 }}>
         <Typography variant="h6" gutterBottom>Chat</Typography>
         {/* Controls removed: model and temperature are driven by the assistant configuration */}
-        <Box sx={{ height: 360, overflow: 'auto', border: '1px solid', borderColor: 'divider', borderRadius: 1, p: 1, mb: 2 }}>
+        <Box ref={listRef} sx={{ height: 360, overflow: 'auto', border: '1px solid', borderColor: 'divider', borderRadius: 1, p: 1, mb: 2 }}>
           <List>
             {messages.map((m, i) => (
               <ListItem key={i} alignItems="flex-start">
