@@ -20,10 +20,7 @@ cd server
 npm install
 
 # Create .env with your credentials
-echo OPENAI_API_KEY=YOUR_OPENAI_KEY > .env
-echo OPENAI_ASSISTANT_ID=YOUR_ASSISTANT_ID >> .env
-echo PORT=3001 >> .env
-echo CLIENT_ORIGIN=http://localhost:3000 >> .env
+rename .env-simple to .env and fill in the values
 
 # Start the server
 npm run dev
