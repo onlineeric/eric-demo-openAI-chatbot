@@ -44,6 +44,6 @@ npm run dev
 
 ### Notes
 - To change behavior (e.g., constrain scope, adjust tone, or switch models), edit the Assistant in the OpenAI dashboard.
-![OpenAI-assistants](images\OpenAI-assistants.png)
-![assistant-main](images\assistant-main.png)
-![vector-store](images\vector-store.png)
+![OpenAI-assistants](images/OpenAI-assistants.png)
+![assistant-main](images/assistant-main.png)
+![vector-store](images/vector-store.png)
